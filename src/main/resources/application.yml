@@ -11,5 +11,3 @@ spring:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     username: teamwater
     password: P@SSWORD123
-  h2:
-    console.enabled: true
