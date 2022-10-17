@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/product")
-@CrossOrigin
+@CrossOrigin(origins = {"https://teamwater.azurewebsites.net", "http://localhost:3000", "http://localhost:4200"}, allowCredentials = "true")
 public class ProductController {
 
     private final ProductService productService;

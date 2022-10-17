@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
+@CrossOrigin(origins = {"https://teamwater.azurewebsites.net", "http://localhost:3000", "http://localhost:4200"}, allowCredentials = "true")
 public class AuthController {
 
     private final AuthService authService;
