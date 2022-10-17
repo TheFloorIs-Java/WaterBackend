@@ -56,7 +56,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>11.2.1.jre18</version>
+		</dependency>
+
+
 	</dependencies>
+
 
 	<build>
 		<plugins>

@@ -4,12 +4,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
     defer-datasource-initialization: true
   datasource:
-    url: jdbc:h2:mem:memdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
+    url: jdbc:sqlserver://teamwater.database.windows.net:1433;database=db;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: teamwater
+    password: P@SSWORD123
   h2:
     console.enabled: true
