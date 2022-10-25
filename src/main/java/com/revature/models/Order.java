@@ -1,16 +1,19 @@
 package com.revature.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,34 +27,34 @@ import lombok.NoArgsConstructor;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-    private int orderID;
+    private int ID;
 
+    // User
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn
     private User user;
 
-    @Column(name = "group_id")
-    private int groupID;
-    private String productName;
-    private String productImage;
-    @Column(length = 500)
-    private String productDescription;
-    private double productPrice;
-    private int productQuantity;
-    private LocalDate date;
-}
+    // Billing
+    private String name;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
 
-/* JSON body example for a post request:
- *
- * [
- *  {
- *      "user": {"id": 1},
- *      "productName": "shirt",
- *      "productImage": "image",
- *      "productDescription": "merch",
- *      "productPrice": 22.2,
- *      "productQuantity": 4
- *  }
- * ]
- */
+    // Payment
+    private String lastDigitsCardNo;
+
+    // Cost
+    private double costOfItems;
+    private double costOfShipping;
+    private double tax;
+    private double totalCost;
+
+    // Date
+    private LocalDate date;
+
+    // Order items
+    @OneToMany
+    @JsonManagedReference
+    private List<OrderItem> items;
+}

@@ -3,7 +3,6 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,37 +26,25 @@ public class OrderController {
     }
 
     /**
-     * Retrieves all orders of a single user from the database based on the user's email
+     * Saves an order made by a user
      * 
-     * @param userEmail must be valid
-     * @returns all orders of a single user
-     */
-    @Authorized
-    @GetMapping("{user_email}/orders")
-    public ResponseEntity<List<Order>> getOrdersByUserEmail(@PathVariable("user_email") String userEmail) {
-        return ResponseEntity.ok(this.os.getOrdersByUserEmail(userEmail));
-    }
-
-    /**
-     * Retrieves a group of orders from the database based on the group ID of the orders
-     * 
-     * @param groupID must be valid
-     * @returns a group of orders
-     */
-    @Authorized
-    @GetMapping("orders/groups/{group_id}")
-    public ResponseEntity<List<Order>> getOrdersByGroupID(@PathVariable("group_id") int groupID) {
-        return ResponseEntity.ok(this.os.getOrdersByGroupID(groupID));
-    }
-
-    /**
-     * Inserts a group of orders corresponding to a single transaction into the database
-     * 
-     * @param orders must not be empty or null
+     * @param order is an order made by a user
      */
     @Authorized
     @PostMapping("orders")
-    public void submitOrders(@RequestBody List<Order> orders) {
-        this.os.submitOrders(orders);
+    public void submitOrder(@RequestBody Order order) {
+        this.os.submitOrder(order);
+    }
+
+    /**
+     * Retrieves all orders of a single user
+     * 
+     * @param userEmail must correspond to a user
+     * @return all orders of a single user
+     */
+    @Authorized
+    @GetMapping("{user_email}/orders")
+    public List<Order> getOrdersByUserEmail(@PathVariable("user_email") String userEmail) {
+        return this.os.getOrdersByUserEmail(userEmail);
     }
 }
