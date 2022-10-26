@@ -25,8 +25,13 @@ public class OrderControllerIntTest { // Integration test
     private OrderService os;
 
     @Test
-    public void signUp() {
+    public void getOrdersByUserEmailTest() {
         ArrayList<Order> orders = new ArrayList<Order>();
+        Order order1 = new Order();
+        Order order2 = new Order();
+        orders.add(order1);
+        orders.add(order2);
+        
         String ordersJSON = ObjToJSON.JSONify(orders);
 
         Mockito.when(this.os.getOrdersByUserEmail("testuser@gmail.com")).thenReturn(orders);

@@ -33,10 +33,10 @@ public class OrderService {
      * @param order is an order made by a user
      */
     @Transactional
-    public void submitOrder(Order order) {
+    public Order submitOrder(Order order) {
         int userID = this.ur.getIDByEmail(order.getUser().getEmail());
         User user = this.ur.findById(userID).get();
-        order.setUser(user);
+        order.setUser(user); // Sets all information of the user rather than only having the email that's received in the HTTP request
 
         LocalDate now = LocalDate.now();
         order.setDate(now);
@@ -49,6 +49,8 @@ public class OrderService {
                 this.ir.save(item);
             }
         }
+
+        return order;
     }
 
     /**

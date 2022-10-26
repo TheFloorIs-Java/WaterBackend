@@ -31,10 +31,10 @@ public class OrderController {
      * 
      * @param order is an order made by a user
      */
-    //@Authorized
+    @Authorized
     @PostMapping("orders")
-    public void submitOrder(@RequestBody Order order) {
-        this.os.submitOrder(order);
+    public ResponseEntity<Order> submitOrder(@RequestBody Order order) {
+        return ResponseEntity.ok(this.os.submitOrder(order));
     }
 
     /**
@@ -43,7 +43,7 @@ public class OrderController {
      * @param userEmail must correspond to a user
      * @return all orders of a single user
      */
-    //@Authorized
+    @Authorized
     @GetMapping("{user_email}/orders")
     public ResponseEntity<List<Order>> getOrdersByUserEmail(@PathVariable("user_email") String userEmail) {
         return ResponseEntity.ok(this.os.getOrdersByUserEmail(userEmail));
