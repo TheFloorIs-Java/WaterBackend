@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ public class OrderController {
      * 
      * @param order is an order made by a user
      */
-    @Authorized
+    //@Authorized
     @PostMapping("orders")
     public void submitOrder(@RequestBody Order order) {
         this.os.submitOrder(order);
@@ -42,9 +43,9 @@ public class OrderController {
      * @param userEmail must correspond to a user
      * @return all orders of a single user
      */
-    @Authorized
+    //@Authorized
     @GetMapping("{user_email}/orders")
-    public List<Order> getOrdersByUserEmail(@PathVariable("user_email") String userEmail) {
-        return this.os.getOrdersByUserEmail(userEmail);
+    public ResponseEntity<List<Order>> getOrdersByUserEmail(@PathVariable("user_email") String userEmail) {
+        return ResponseEntity.ok(this.os.getOrdersByUserEmail(userEmail));
     }
 }
