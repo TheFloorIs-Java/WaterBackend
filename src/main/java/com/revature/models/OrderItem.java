@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -30,7 +31,11 @@ public class OrderItem {
     @JoinColumn
     private Order order;
 
-    // Not using a foreign key to products for the following information just in case the product is discontinued or details are changed
+    @OneToOne
+    @JoinColumn
+    private Product product;
+
+    // A copy of the product's information just in case the product is discontinued or details are changed
     private String productName;
     private String productImage;
     private String productDescription;

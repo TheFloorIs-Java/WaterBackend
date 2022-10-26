@@ -16,7 +16,7 @@ import com.revature.services.OrderService;
 
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin(origins = {"https://teamwaterfrontend.azurewebsites.net", "http://localhost:4200", "http://localhost:3000"}, allowCredentials = "true")
 public class OrderController {
     private OrderService os;
 
